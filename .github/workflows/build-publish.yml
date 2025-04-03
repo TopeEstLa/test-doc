@@ -81,9 +81,11 @@ jobs:
 
       - name: Unzip files
         run: |
-          ls
           cd artifacts
-          unzip webHelp*.zip
+          unzip webHelp*.zip -d website
           ls
+          cd website
+          ls
+          
 
 
