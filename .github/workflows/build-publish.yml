@@ -82,6 +82,7 @@ jobs:
       - name: Unzip files
         run: |
           ls
+          cd artifacts
           unzip webHelp*.zip
           ls
 
