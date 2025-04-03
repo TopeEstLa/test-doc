@@ -2,8 +2,7 @@ name: Build documentation
 
 on:
   push:
-    branches: ["main"]
-  workflow_dispatch:
+    branches: ["master"]
 
 env:
   INSTANCE: 'Writerside/hi'
