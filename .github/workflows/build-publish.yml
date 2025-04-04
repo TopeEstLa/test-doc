@@ -70,7 +70,7 @@ jobs:
         with:
           instance: ${{ env.INSTANCE }}
   deploy:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Download artifacts
@@ -82,10 +82,14 @@ jobs:
       - name: Unzip files
         run: |
           cd artifacts
-          unzip webHelp*.zip -d website
-          ls
-          cd website
-          ls
-          
+          unzip webHelp*.zip -d dist
 
+      - name: Publish to cloudflare page
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: "TestDocumentation"
+          directory: "artifacts/website"
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
